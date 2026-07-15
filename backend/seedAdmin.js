@@ -10,15 +10,15 @@ const seedAdmin = async () => {
     await mongoose.connect(process.env.MONGO_URI);
     
     // Check if admin already exists
-    const existingAdmin = await Admin.findOne({ email: 'e-trust@admin.com' });
+    const existingAdmin = await Admin.findOne({ email: 'etrack@admin.com' });
     if (existingAdmin) {
       console.log('Admin already exists');
       process.exit();
     }
 
-    const hashedPassword = await bcrypt.hash('e-trust@access.com', 10);
+    const hashedPassword = await bcrypt.hash('etrack@access.com', 10);
     const admin = new Admin({
-      email: 'e-trust@admin.com',
+      email: 'etrack@admin.com',
       password: hashedPassword,
       recoveryQuestion: 'Default Secret Question',
       recoveryAnswer: 'Admin'
@@ -26,8 +26,8 @@ const seedAdmin = async () => {
 
     await admin.save();
     console.log('Default Admin created successfully!');
-    console.log('Email: e-trust@admin.com');
-    console.log('Password: e-trust@access.com');
+    console.log('Email: etrack@admin.com');
+    console.log('Password: etrack@access.com');
     process.exit();
   } catch (error) {
     console.error('Error seeding admin:', error);
